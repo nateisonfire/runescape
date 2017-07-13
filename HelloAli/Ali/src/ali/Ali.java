@@ -7,7 +7,7 @@ package ali;
 
 /**
  *
- * @author Nateisonfire
+ * @author Nate
  */
 
 import BasicIO.*;
