@@ -1,0 +1,36 @@
+.trackingPage{
+    height: 100%;
+    margin: auto;
+}
+
+.left {
+    height: 100%;    
+    width: 50%;
+    float: left;
+}
+
+.right {
+    height: 100%;
+    width: 50%;
+    margin-left: 50%;
+}
+
+.button {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.backButton {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+}
+
+.backButtonStyle{
+    background-color: #4DAF7C;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}

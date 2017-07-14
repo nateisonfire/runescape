@@ -1,0 +1,10 @@
+.MonsterButton {
+    background-color: #4DAF7C;
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    margin: 0px 10px;
+    font-size: 16px;
+}
