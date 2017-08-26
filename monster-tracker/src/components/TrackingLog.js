@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+//import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import './TrackingLog.css';
 
 class TrackingLog extends Component {
@@ -11,6 +13,7 @@ class TrackingLog extends Component {
   }
 
   render(){
+
     return (
       <div className="log">
         <div className="notepad">
@@ -25,3 +28,7 @@ class TrackingLog extends Component {
 }
 
 export default TrackingLog;
+
+
+
+//            

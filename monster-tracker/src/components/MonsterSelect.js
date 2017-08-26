@@ -17,7 +17,7 @@ class MonsterSelect extends Component {
     };*/
     return (
       <div className="monsterSelection">
-        <div className="selectionTitle">Select a NPC to track:</div>
+        <div className="selectionTitle">Select a NPC:</div>
         <MonsterButton onClick={this.props.onMonsterClick} npc="Man" />
         <MonsterButton onClick={this.props.onMonsterClick} npc="Goblin" />
         <MonsterButton onClick={this.props.onMonsterClick} npc="Cow" />

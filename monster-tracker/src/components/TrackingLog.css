@@ -18,3 +18,11 @@ li {
 .notepad {
     padding: 10px;
 }
+
+.example-enter {
+    opacity: 0.01;
+}
+.example-enter.example-enter-active{
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+}

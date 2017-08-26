@@ -58,7 +58,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Monster Tracker</h2>
+          <h2>OSRS Loots</h2>
         </div>
         <div className="App-content">
           {content}
