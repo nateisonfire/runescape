@@ -18,6 +18,13 @@
 .button {
     margin: 10px;
     cursor: pointer;
+    height: 42px;
+    width: 42px;
+}
+
+.buttonImg {
+    max-height: 32px;
+    max-width: 32px;
 }
 
 .backButton {

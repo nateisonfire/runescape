@@ -12,8 +12,8 @@ class MonsterButton extends Component {
 
   render(){
     return (
-      <button className="MonsterButton" onClick={this.props.onClick}>
-          {this.state.name}
+      <button className="MonsterButton" onClick={() => this.props.onClick(this.props.id)}>
+          {this.state.name.split('_').join(' ')}
       </button>
     );
   }

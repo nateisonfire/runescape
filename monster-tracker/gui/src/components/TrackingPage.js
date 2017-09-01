@@ -6,6 +6,7 @@ class TrackingPage extends Component {
 
   constructor(props) {
     super();
+    console.log(props);
     this.state = {
         counter: 0,
         npcInfo: {
@@ -30,13 +31,57 @@ class TrackingPage extends Component {
     }
   }
 
-  onButtonClick(i){
+  onButtonClick(input){
+    // no mutation!
+    var i = Object.assign({},input);
     var records = this.state.clickedItems.slice();      
+
+    console.log(i);
+
+    // deal with special items
+    if (i.item == "Coins"){
+      i.price = "1";
+    }
+
+    // deal with prices
+    if (i.price == null) i.price = "0";
+    i.price = i.price.split(',').join('');
+    
+    // deal with quantities
+    if (typeof i.quantity === 'string' && i.quantity.includes("–")){
+
+      var q = i.quantity.split(',').join('');
+      var quantityRange = q.match(/(\d[\d\.]*)/g);
+      var lowest = quantityRange[0];
+      var highest = quantityRange[quantityRange.length-1];
+      var value = prompt('Please enter a range between '+lowest+' - '+highest+':');
+      value = parseInt(value);
+      i.quantity = value;
+      console.log(value);
+
+    }else if (typeof i.quantity === 'string' && i.quantity.includes(";")){
+      // just a prompt for now
+      var q = i.quantity.split(',').join('');
+      var quantityRange = q.match(/(\d[\d\.]*)/g);
+      var lowest = quantityRange[0];
+      var highest = quantityRange[quantityRange.length-1];
+      var value = prompt('Please enter a range between '+lowest+' - '+highest+':');
+      value = parseInt(value);
+      i.quantity = value;
+      console.log(value);
+    }else{
+      // display normally 
+      i.quantity = parseInt(i.quantity);    
+    }
+
+    //console.log(i);
+
     // is the item already in the log?
     var location = records.findIndex(function(o){
       return o.id === i.id;
     });
-    // if so, update the quantity
+
+    // if item is in the log, update the quantity
     if (location !== -1) {
       const newQuantity = records[location].quantity + i.quantity;
       const newRecord = Object.assign({}, records[location], {quantity: newQuantity});
@@ -61,10 +106,21 @@ class TrackingPage extends Component {
 
   displayButtons() {
     var buttons = [];
-    this.state.npcInfo.dropTable.forEach(function(i) {
-        var src = "https://rsbuddy.com/items/"+i.id+".png";
-        var btn = <button className="button" key={i.id} onClick={() => this.onButtonClick(i)}><img src={src} alt={i.item} /></button>;
+    //this.state.npcInfo.dropTable.forEach(function(i) {
+      var counter = 0;
+    this.props.data.drops.forEach(function(i) {
+        i.id = counter;
+        var s = {
+          background: "url("+i.image+") no-repeat center center",
+          backgroundSize: i.imageWidth+"px "+i.imageHeight+"px",
+          backgroundColor: 'buttonface',
+          borderWidth: 2,
+          border: '2px outset buttonface'
+        };
+        //var src = i.image;
+        var btn = <button title={i.item} className="button" style={s} key={i.id} onClick={() => this.onButtonClick(i)}></button>;
         buttons.push(btn);
+        counter++
     }, this);
 
     return (
@@ -73,6 +129,7 @@ class TrackingPage extends Component {
   }
 
   render(){
+
     return (
       <div className="trackingPage">
         <div className="left">
@@ -90,3 +147,13 @@ class TrackingPage extends Component {
 }
 
 export default TrackingPage;
+
+
+/*
+// backup
+//this.state.npcInfo.dropTable.forEach(function(i) {
+        var src = "https://rsbuddy.com/items/"+i.id+".png";
+        var btn = <button className="button" key={i.id} onClick={() => this.onButtonClick(i)}><img src={src} alt={i.item} /></button>;
+        buttons.push(btn);
+    }, this);
+*/
